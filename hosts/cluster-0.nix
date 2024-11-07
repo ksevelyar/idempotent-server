@@ -16,7 +16,13 @@
     ../services/journald.nix
     ../services/net/nginx.nix
     ../services/net/sshd.nix
+    ../services/databases/postgresql.nix
   ];
+
+  age.secrets.db-habits = {
+    file = ../secrets/db-habits.age;
+    owner = "postgres";
+  };
 
   boot.loader.grub = {
     # no need to set devices, disko will add all devices that have a EF02 partition to the list already

@@ -1,11 +1,21 @@
 {
-  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
-  inputs.disko.url = "github:nix-community/disko";
-  inputs.disko.inputs.nixpkgs.follows = "nixpkgs";
+  inputs = {
+    nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+
+    disko.url = "github:nix-community/disko";
+    disko.inputs.nixpkgs.follows = "nixpkgs";
+
+    agenix = {
+      url = "github:ryantm/agenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+      inputs.agenix.inputs.darwin.follows = "";
+    };
+  };
 
   outputs = {
     nixpkgs,
     disko,
+    agenix,
     ...
   }: {
     # firstvds
@@ -15,6 +25,7 @@
       modules = [
         ./disko-vda.nix
         disko.nixosModules.disko
+        agenix.nixosModules.default
 
         ./hosts/cluster-0.nix
       ];
