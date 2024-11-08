@@ -7,4 +7,5 @@ let
   systems = [cluster-0];
 in {
   "db-habits.age".publicKeys = users ++ systems;
+  "habits-phoenix.age".publicKeys = users ++ systems;
 }

@@ -14,11 +14,12 @@
       "habits"
     ];
 
-    identMap = ''
-      superuser_map      root      postgres
-      superuser_map      postgres  postgres
+   authentication = ''
+      local   all             postgres                                peer
 
-      superuser_map      /^(.*)$   \1
+      local   habits          habits                                  md5
+
+      host    habits          habits                127.0.0.1/32      md5
     '';
   };
 

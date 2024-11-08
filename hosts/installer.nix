@@ -1,7 +1,6 @@
 {
   modulesPath,
   pkgs,
-  config,
   ...
 }: {
   imports = [
@@ -14,19 +13,8 @@
     ../sys/cache.nix
 
     ../services/journald.nix
-    ../services/net/nginx.nix
     ../services/net/sshd.nix
-    ../services/databases/postgresql.nix
   ];
-
-  age.secrets.db-habits = {
-    file = ../secrets/db-habits.age;
-    owner = "postgres";
-  };
-
-  age.secrets.habits-phoenix = {
-    file = ../secrets/habits-phoenix.age;
-  };
 
   boot.loader.grub = {
     # no need to set devices, disko will add all devices that have a EF02 partition to the list already
@@ -38,17 +26,13 @@
   programs.fish.enable = true;
   environment.systemPackages = with pkgs; [
     neovim
-    ripgrep
-    fzf
     gitMinimal
-    curl
     curlie
     bottom
     ncdu
     rsync
     zoxide
     bat
-    tealdeer
   ];
 
   users.users.ksevelyar = {
@@ -105,27 +89,4 @@
 
   system.stateVersion = "24.05";
   documentation.nixos.enable = false;
-
-  # apps
-  services.nginx.virtualHosts."api.habits.rusty-cluster.net" = {
-    forceSSL = true;
-    enableACME = true;
-
-    locations."/" = {
-      proxyPass = "http://localhost:4000";
-      extraConfig = ''
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-      '';
-    };
-  };
-
-  services.habits-phoenix.enable = true;
-
-  systemd.services.habits-phoenix = {
-    serviceConfig = {
-      EnvironmentFile = config.age.secrets.habits-phoenix.path;
-    };
-  };
 }

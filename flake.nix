@@ -10,12 +10,18 @@
       inputs.nixpkgs.follows = "nixpkgs";
       inputs.agenix.inputs.darwin.follows = "";
     };
+
+    habits-phoenix = {
+      url = "github:ksevelyar/habits-phoenix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = {
     nixpkgs,
     disko,
     agenix,
+    habits-phoenix,
     ...
   }: {
     # firstvds
@@ -26,16 +32,16 @@
         ./disko-vda.nix
         disko.nixosModules.disko
         agenix.nixosModules.default
-
+        habits-phoenix.nixosModules.default
         ./hosts/cluster-0.nix
       ];
     };
-    # nix run github:nix-community/nixos-anywhere -- --flake .#cluster-0 root@cluster-0
-    nixosConfigurations.cluster-0-iso = nixpkgs.lib.nixosSystem {
+    # nix run github:nix-community/nixos-anywhere -- --flake .#installer root@cluster-0
+    nixosConfigurations.installer = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
         "${nixpkgs}/nixos/modules/installer/cd-dvd/installation-cd-minimal.nix"
-        ./hosts/cluster-0.nix
+        ./hosts/installer.nix
       ];
     };
   };
