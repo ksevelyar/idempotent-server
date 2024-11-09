@@ -2,6 +2,7 @@
   modulesPath,
   pkgs,
   config,
+  inputs,
   ...
 }: {
   imports = [
@@ -36,19 +37,19 @@
   };
 
   programs.fish.enable = true;
-  environment.systemPackages = with pkgs; [
-    neovim
-    ripgrep
-    fzf
-    gitMinimal
-    curl
-    curlie
-    bottom
-    ncdu
-    rsync
-    zoxide
-    bat
-    tealdeer
+  environment.systemPackages = [
+    pkgs.neovim
+    pkgs.ripgrep
+    pkgs.fzf
+    pkgs.gitMinimal
+    pkgs.curl
+    pkgs.curlie
+    pkgs.bottom
+    pkgs.ncdu
+    pkgs.rsync
+    pkgs.zoxide
+    pkgs.bat
+    pkgs.tealdeer
   ];
 
   users.users.ksevelyar = {
@@ -119,6 +120,13 @@
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
       '';
     };
+  };
+
+  services.nginx.virtualHosts."habits.rusty-cluster.net" = {
+    forceSSL = true;
+    enableACME = true;
+
+    root = inputs.habits-vue.packages.x86_64-linux.default;
   };
 
   services.habits-phoenix.enable = true;
