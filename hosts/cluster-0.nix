@@ -127,6 +127,12 @@
     enableACME = true;
 
     root = inputs.habits-vue.packages.x86_64-linux.default;
+
+    extraConfig = ''
+      location / {
+        try_files $uri $uri/ /index.html;
+      }
+    '';
   };
 
   services.habits-phoenix.enable = true;
