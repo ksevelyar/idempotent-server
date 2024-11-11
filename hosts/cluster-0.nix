@@ -37,19 +37,19 @@
   };
 
   programs.fish.enable = true;
-  environment.systemPackages = [
-    pkgs.neovim
-    pkgs.ripgrep
-    pkgs.fzf
-    pkgs.gitMinimal
-    pkgs.curl
-    pkgs.curlie
-    pkgs.bottom
-    pkgs.ncdu
-    pkgs.rsync
-    pkgs.zoxide
-    pkgs.bat
-    pkgs.tealdeer
+  environment.systemPackages = with pkgs; [
+    neovim
+    ripgrep
+    fzf
+    gitMinimal
+    curl
+    curlie
+    bottom
+    ncdu
+    rsync
+    zoxide
+    bat
+    tealdeer
   ];
 
   users.users.ksevelyar = {

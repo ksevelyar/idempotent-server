@@ -128,11 +128,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1731172293,
-        "narHash": "sha256-Ea1v0vLLjAIwE/2JU2C8mbet6VcgFgxwmVISXA80nsQ=",
+        "lastModified": 1731363626,
+        "narHash": "sha256-2f9G0Hf5HoHcjJykUlMM6aNxOL0cefvL/mjXXfq32ug=",
         "owner": "ksevelyar",
         "repo": "habits-vue",
-        "rev": "86f13d946bfc0d0a6a465e04664d3f72e96830df",
+        "rev": "ecbbf2f0cd67591d403678c55ff6a39c7bba0a3a",
         "type": "github"
       },
       "original": {
