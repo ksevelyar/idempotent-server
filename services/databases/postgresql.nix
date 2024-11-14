@@ -10,15 +10,12 @@
         ensureDBOwnership = true;
       }
     ];
-    ensureDatabases = [
-      "habits"
-    ];
+    ensureDatabases = ["habits"];
 
-   authentication = ''
+    authentication = ''
       local   all             postgres                                peer
 
       local   habits          habits                                  md5
-
       host    habits          habits                127.0.0.1/32      md5
     '';
   };

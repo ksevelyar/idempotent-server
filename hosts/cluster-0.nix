@@ -29,6 +29,10 @@
     file = ../secrets/habits-phoenix.age;
   };
 
+  age.secrets.buzz-phoenix = {
+    file = ../secrets/buzz-phoenix.age;
+  };
+
   boot.loader.grub = {
     # no need to set devices, disko will add all devices that have a EF02 partition to the list already
     # devices = [ ];
@@ -140,6 +144,46 @@
   systemd.services.habits-phoenix = {
     serviceConfig = {
       EnvironmentFile = config.age.secrets.habits-phoenix.path;
+    };
+  };
+
+  services.nginx.virtualHosts."api.buzz.rusty-cluster.net" = {
+    forceSSL = true;
+    enableACME = true;
+
+    locations."/" = {
+      proxyPass = "http://localhost:4001";
+      extraConfig = ''
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+      '';
+    };
+  };
+
+  services.nginx.virtualHosts."buzz.rusty-cluster.net" = {
+    forceSSL = true;
+    enableACME = true;
+
+    root = inputs.buzz-vue.packages.x86_64-linux.default;
+
+    extraConfig = ''
+      location / {
+        try_files $uri $uri/ /index.html;
+      }
+    '';
+  };
+
+  systemd.services.buzz-phoenix = {
+    description = "buzz-phoenix";
+    wantedBy = ["multi-user.target"];
+
+    serviceConfig = {
+      EnvironmentFile = config.age.secrets.buzz-phoenix.path;
+      Type = "simple";
+      ExecStart = "${inputs.buzz-phoenix.packages.${pkgs.system}.default}/bin/buzz start";
+      Restart = "on-failure";
+      ProtectHome = "read-only";
     };
   };
 }

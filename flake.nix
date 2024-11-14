@@ -11,9 +11,13 @@
 
     habits-phoenix.url = "github:ksevelyar/habits-phoenix";
     habits-phoenix.inputs.nixpkgs.follows = "nixpkgs";
-
     habits-vue.url = "github:ksevelyar/habits-vue";
     habits-vue.inputs.nixpkgs.follows = "nixpkgs";
+
+    buzz-phoenix.url = "github:ksevelyar/buzz-phoenix";
+    buzz-phoenix.inputs.nixpkgs.follows = "nixpkgs";
+    buzz-vue.url = "github:ksevelyar/buzz-vue";
+    buzz-vue.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
