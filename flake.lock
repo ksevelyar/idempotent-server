@@ -31,11 +31,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1731701491,
-        "narHash": "sha256-cFy8RUhOA7I5+Y6RDfqtknBiV+IPvE+9e8rAL5C4GT0=",
+        "lastModified": 1732825263,
+        "narHash": "sha256-bNOua+Ru233ORnDiJ1CD8GRD75uhPxroJ+HORPZ7wHk=",
         "owner": "ksevelyar",
         "repo": "buzz-phoenix",
-        "rev": "9e9f86d745cbb9d3795b8b45e61df8191906744a",
+        "rev": "aacbc7b1322bb1bf0c741bc1a001c6a942c6e809",
         "type": "github"
       },
       "original": {
@@ -52,11 +52,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1731698937,
-        "narHash": "sha256-ktn/23Y5xaifpE/6W4KXJYvIj/DIWAVwZ1l40QUS+Ig=",
+        "lastModified": 1732825226,
+        "narHash": "sha256-iUaHT1/ROnX2VHKBGqQqHw8a4ySWZqwZS9NzYJZrYYI=",
         "owner": "ksevelyar",
         "repo": "buzz-vue",
-        "rev": "234f88a447227926479e7183802ce34cabfb80c8",
+        "rev": "633dd08a9ccb1dff138251847862ddbeecd7c7d8",
         "type": "github"
       },
       "original": {
@@ -183,11 +183,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1731363930,
-        "narHash": "sha256-H33jiUj9ymLMirMo1y9U38hW/IVCbfLuGEimuqlGbbE=",
+        "lastModified": 1732568366,
+        "narHash": "sha256-WsUIy+hP5WNCZ1A/SZUdzPOXP+6DVtBc3oKh3elu5t4=",
         "owner": "ksevelyar",
         "repo": "habits-phoenix",
-        "rev": "b1c85358a12770cee86fa941826256f2865a09cc",
+        "rev": "4fdd6df26e8ff89fbd4cc8ceacb97bfdfd6daa3a",
         "type": "github"
       },
       "original": {
