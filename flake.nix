@@ -7,7 +7,6 @@
 
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
-    agenix.inputs.agenix.inputs.darwin.follows = "";
 
     habits-phoenix.url = "github:ksevelyar/habits-phoenix";
     habits-phoenix.inputs.nixpkgs.follows = "nixpkgs";
