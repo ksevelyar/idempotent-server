@@ -142,6 +142,9 @@
   services.habits-phoenix.enable = true;
 
   systemd.services.habits-phoenix = {
+    preStart = ''
+      ${inputs.habits-phoenix.packages.${pkgs.system}.default}/bin/habits eval "Habits.Release.migrate"
+    '';
     serviceConfig = {
       EnvironmentFile = config.age.secrets.habits-phoenix.path;
     };

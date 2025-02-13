@@ -183,11 +183,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1739424979,
-        "narHash": "sha256-OvWHqhiTDTsLXsOCeTAeyfb5AZ2Qg53TlxClsSbycZI=",
+        "lastModified": 1739434721,
+        "narHash": "sha256-Oz52/jHI71nuiE4UJ3kR6yhekfsqopH1NVCIJ0bKAb8=",
         "owner": "ksevelyar",
         "repo": "habits-phoenix",
-        "rev": "00844d9369766c4f80828b727f03ce8284296d7a",
+        "rev": "3129d4011c107edc5a91aa84413e3338a0debfa9",
         "type": "github"
       },
       "original": {
