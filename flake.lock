@@ -183,11 +183,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1759440303,
-        "narHash": "sha256-OFHtjl2nNEmwVpYc5hvuruwzeNe0CtudN50iVUgFsQ8=",
+        "lastModified": 1760214166,
+        "narHash": "sha256-sNSNTflDa2S4AFgxw0FZXI+MvXetv70NzH2br+FuZCA=",
         "owner": "ksevelyar",
         "repo": "habits-phoenix",
-        "rev": "0b8efcf047368313591d9e69661a580ec1e6128c",
+        "rev": "22c69a74cbcbe3c2f3049c2c01b4800514edb7ee",
         "type": "github"
       },
       "original": {
@@ -204,11 +204,11 @@
         ]
       },
       "locked": {
-        "lastModified": 1759558332,
-        "narHash": "sha256-13mjOjZSR12IPln92OiMsOzjC44GTq/5pBguGoPWinc=",
+        "lastModified": 1759558673,
+        "narHash": "sha256-Qj0FGHlNlqbY7l1GW8Qy3q2xnosxAQKaCk5Ku1HWsYg=",
         "owner": "ksevelyar",
         "repo": "habits-vue",
-        "rev": "61d3e66e089a5628dde52baca3a3f9ec1be626e5",
+        "rev": "891fcba34d95ee075f4335f16764420103cea2e9",
         "type": "github"
       },
       "original": {
