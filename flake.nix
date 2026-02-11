@@ -39,6 +39,7 @@
       ];
       specialArgs.inputs = inputs;
     };
+
     # nix run github:nix-community/nixos-anywhere -- --flake .#installer root@cluster-0
     nixosConfigurations.installer = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";

@@ -9,4 +9,5 @@ in {
   "db-habits.age".publicKeys = users ++ systems;
   "habits-phoenix.age".publicKeys = users ++ systems;
   "buzz-phoenix.age".publicKeys = users ++ systems;
+  "wg.age".publicKeys = users ++ systems;
 }

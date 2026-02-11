@@ -17,8 +17,12 @@
     ../services/journald.nix
     ../services/net/nginx.nix
     ../services/net/sshd.nix
+    ../services/net/wireguard.nix
     ../services/databases/postgresql.nix
   ];
+
+  documentation.enable = false;
+  documentation.man.generateCaches = false;
 
   age.secrets.db-habits = {
     file = ../secrets/db-habits.age;
