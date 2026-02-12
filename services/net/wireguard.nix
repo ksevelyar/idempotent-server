@@ -1,5 +1,11 @@
 {config, ...}: {
   networking.firewall.allowedUDPPorts = [51821];
+  networking.firewall.interfaces.skynet.allowedTCPPorts = [22];
+
+  networking.firewall.checkReversePath = "loose";
+  boot.kernel.sysctl = {
+    "net.ipv4.ip_forward" = 1;
+  };
 
   age.secrets = {
     wg-server-private.file = ../../secrets/wg.age;
@@ -22,6 +28,11 @@
       {
         publicKey = "B7CWzOkwXw661/rtJa9GBddGon6ldOVEF40+O6pJbDY=";
         allowedIPs = ["10.10.10.2/32"];
+        persistentKeepalive = 25;
+      }
+      {
+        publicKey = "PDOVQGbuj5Q9RaGprUUbqPoxuLTgFq4tEklWYQs3GVc=";
+        allowedIPs = ["10.10.10.3/32"];
         persistentKeepalive = 25;
       }
     ];
