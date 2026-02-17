@@ -18,6 +18,7 @@
     ../services/net/nginx.nix
     ../services/net/sshd.nix
     ../services/net/wireguard.nix
+    ../services/net/murmur.nix
     ../services/databases/postgresql.nix
   ];
 
@@ -58,6 +59,7 @@
     zoxide
     bat
     tealdeer
+    tcpdump
   ];
 
   users.users.ksevelyar = {

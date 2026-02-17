@@ -6,8 +6,9 @@ let
   cluster-0 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAl7A0q+qLbbQ8rdlX2XyHQ0xM9PqOa7i26HoMw8q9BS";
   systems = [cluster-0];
 in {
-  "db-habits.age".publicKeys = users ++ systems;
-  "habits-phoenix.age".publicKeys = users ++ systems;
-  "buzz-phoenix.age".publicKeys = users ++ systems;
-  "wg.age".publicKeys = users ++ systems;
+  "secrets/murmur.age".publicKeys = users ++ systems;
+  "secrets/db-habits.age".publicKeys = users ++ systems;
+  "secrets/habits-phoenix.age".publicKeys = users ++ systems;
+  "secrets/buzz-phoenix.age".publicKeys = users ++ systems;
+  "secrets/wg.age".publicKeys = users ++ systems;
 }
