@@ -19,6 +19,7 @@
     ../services/net/sshd.nix
     ../services/net/wireguard.nix
     ../services/net/murmur.nix
+    ../services/net/rustdesk.nix
     ../services/databases/postgresql.nix
   ];
 
