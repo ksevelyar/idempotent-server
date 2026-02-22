@@ -1,6 +1,5 @@
 {config, ...}: {
-  networking.firewall.allowedUDPPorts = [51821];
-  networking.firewall.interfaces.skynet.allowedTCPPorts = [22];
+  networking.firewall.allowedUDPPorts = [444];
   networking.firewall.trustedInterfaces = [ "skynet" ];
 
   networking.firewall.checkReversePath = "loose";
@@ -22,7 +21,7 @@
 
   networking.wireguard.interfaces.skynet = {
     ips = ["10.10.10.1/24"];
-    listenPort = 51821;
+    listenPort = 444;
     privateKeyFile = config.age.secrets.wg-server-private.path;
 
     peers = [
