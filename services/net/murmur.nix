@@ -2,8 +2,8 @@
   services.murmur = {
     enable = true;
     welcometext = "🥂";
-    users = 10;
+    users = 20;
     openFirewall = true;
-    bandwidth = 100000;
+    bandwidth = 130000;
   };
 }
