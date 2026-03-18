@@ -20,11 +20,12 @@
     ../services/net/wireguard.nix
     ../services/net/murmur.nix
     ../services/net/rustdesk.nix
+    ../services/net/jitsi.nix
     ../services/databases/postgresql.nix
   ];
 
   documentation.enable = false;
-  documentation.man.generateCaches = false;
+  documentation.man.cache.enable = false;
 
   age.secrets.db-habits = {
     file = ../secrets/db-habits.age;
