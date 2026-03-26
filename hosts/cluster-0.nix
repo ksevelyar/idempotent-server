@@ -25,7 +25,7 @@
   ];
 
   documentation.enable = false;
-  documentation.man.cache.enable = false;
+  documentation.man.generateCaches = false;
 
   age.secrets.db-habits = {
     file = ../secrets/db-habits.age;
@@ -47,9 +47,14 @@
     efiInstallAsRemovable = true;
   };
 
+  zramSwap = {
+    enable = true;
+    algorithm = "zstd";
+  };
   programs.fish.enable = true;
   environment.systemPackages = with pkgs; [
-    neovim
+    zellij
+    neovim-unwrapped
     ripgrep
     fzf
     gitMinimal
@@ -200,6 +205,59 @@
       ExecStart = "${inputs.buzz-phoenix.packages.${pkgs.system}.default}/bin/buzz start";
       Restart = "on-failure";
       ProtectHome = "read-only";
+    };
+  };
+
+  disko.devices = {
+    disk.disk1 = {
+      device = "/dev/vda";
+      type = "disk";
+      content = {
+        type = "gpt";
+        partitions = {
+          boot = {
+            name = "boot";
+            size = "1M";
+            type = "EF02";
+          };
+          esp = {
+            name = "ESP";
+            size = "500M";
+            type = "EF00";
+            content = {
+              type = "filesystem";
+              format = "vfat";
+              mountpoint = "/boot";
+            };
+          };
+          root = {
+            name = "root";
+            size = "100%";
+            content = {
+              type = "lvm_pv";
+              vg = "pool";
+            };
+          };
+        };
+      };
+    };
+    lvm_vg = {
+      pool = {
+        type = "lvm_vg";
+        lvs = {
+          root = {
+            size = "100%FREE";
+            content = {
+              type = "filesystem";
+              format = "ext4";
+              mountpoint = "/";
+              mountOptions = [
+                "defaults"
+              ];
+            };
+          };
+        };
+      };
     };
   };
 }

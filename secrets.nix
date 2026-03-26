@@ -11,4 +11,5 @@ in {
   "secrets/habits-phoenix.age".publicKeys = users ++ systems;
   "secrets/buzz-phoenix.age".publicKeys = users ++ systems;
   "secrets/wg.age".publicKeys = users ++ systems;
+  "secrets/amnezia.age".publicKeys = users ++ systems;
 }
