@@ -4,6 +4,7 @@ let
 
   # ssh-keyscan -p 9922 localhost
   cluster-0 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAl7A0q+qLbbQ8rdlX2XyHQ0xM9PqOa7i26HoMw8q9BS";
+  shodan = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIIzl16KXcQuM5E+EXBfCL5l4CT/HlxQnzi2D42VecyHb guest";
   systems = [cluster-0];
 in {
   "secrets/murmur.age".publicKeys = users ++ systems;
@@ -12,4 +13,7 @@ in {
   "secrets/buzz-phoenix.age".publicKeys = users ++ systems;
   "secrets/wg.age".publicKeys = users ++ systems;
   "secrets/amnezia.age".publicKeys = users ++ systems;
+  "secrets/root-password.age".publicKeys = users ++ systems;
+
+  "secrets/wifi.age".publicKeys = [shodan ksevelyar];
 }

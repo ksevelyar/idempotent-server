@@ -28,7 +28,7 @@
     agenix,
     habits-phoenix,
     ...
-  }@inputs: {
+  } @ inputs: {
     # firstvds
     # nixos-rebuild switch --flake .#cluster-0 --target-host root@cluster-0 --fast
     nixosConfigurations.cluster-0 = nixpkgs.lib.nixosSystem {
@@ -48,10 +48,18 @@
       modules = [
         disko.nixosModules.disko
         agenix.nixosModules.default
-        habits-phoenix.nixosModules.default
         ./hosts/cluster-1.nix
       ];
       specialArgs.inputs = inputs;
+    };
+
+    # nix build .#nixosConfigurations.shodan.config.system.build.sdImage --impure
+    nixosConfigurations.shodan = nixpkgs.lib.nixosSystem {
+      system = "x86_64-linux";
+      modules = [
+        agenix.nixosModules.default
+        ./hosts/shodan.nix
+      ];
     };
 
     # nixos-anywhere -- --flake .#installer root@cluster-0
@@ -67,7 +75,6 @@
       buildInputs = with (import nixpkgs {system = "x86_64-linux";}); [
         inputs.agenix.packages.${pkgs.system}.default
         inputs.nixos-anywhere.packages.${pkgs.system}.default
-        cpio
       ];
     };
   };
