@@ -1,3 +1,4 @@
+# EFR32MG21
 {
   pkgs,
   lib,
@@ -223,5 +224,34 @@ in {
       mkdir -p ./files/boot
       ${config.boot.loader.generic-extlinux-compatible.populateCmd} -c ${config.system.build.toplevel} -d ./files/boot
     '';
+  };
+
+  services.zigbee2mqtt = {
+    enable = true;
+
+    settings = {
+      serial = {
+        port = "/dev/serial/by-id/usb-1a86_USB_Serial-if00-port0";
+        adapter = "ember";
+      };
+
+      mqtt = {
+        base_topic = "zigbee2mqtt";
+        server = "mqtt://localhost:1883";
+        # user = "youruser";
+        # password = "yourpass";
+      };
+
+      frontend = {
+        enabled = true;
+        port = 8080;
+      };
+
+      permit_join = true;
+      advanced = {
+        log_level = "info";
+        transmit_power = 20; # EFR32MG21 can do +20 dBm
+      };
+    };
   };
 }
