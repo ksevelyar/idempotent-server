@@ -22,9 +22,16 @@
   documentation.enable = false;
   documentation.man.generateCaches = false;
 
-  age.secrets.amnezia.file = ../secrets/amnezia.age;
-  networking.wireguard.enable = true;
+  age.secrets.cluster-1-xray.file = ../secrets/cluster-1-xray.age;
+  networking.firewall.allowedTCPPorts = [443];
+  services.xray = {
+    enable = true;
+    settingsFile = config.age.secrets.cluster-1-xray.path;
+  };
 
+  # FIXME
+  age.secrets.amnezia.file = ../secrets/amnezia.age;
+  networking.wireguard.enable = false;
   networking.wireguard.interfaces.amnezia = {
     type = "amneziawg";
 
@@ -50,7 +57,6 @@
       }
     ];
   };
-
   networking.firewall.allowedUDPPorts = [1984];
 
   zramSwap = {
@@ -124,6 +130,7 @@
 
     # ip route | grep default
     defaultGateway = "194.154.28.1";
+    nameservers = ["1.1.1.1" "8.8.8.8"];
   };
 
   system.stateVersion = "24.05";

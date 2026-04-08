@@ -227,7 +227,7 @@ in {
   };
 
   services.zigbee2mqtt = {
-    enable = true;
+    enable = false;
 
     settings = {
       serial = {
@@ -250,7 +250,7 @@ in {
       permit_join = true;
       advanced = {
         log_level = "info";
-        transmit_power = 20; # EFR32MG21 can do +20 dBm
+        transmit_power = 20;
       };
     };
   };
