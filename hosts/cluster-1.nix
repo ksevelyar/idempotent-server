@@ -72,6 +72,7 @@
 
   programs.fish.enable = true;
   environment.systemPackages = with pkgs; [
+    xray
     zellij
     neovim-unwrapped
     ripgrep
