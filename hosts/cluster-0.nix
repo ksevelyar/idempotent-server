@@ -32,12 +32,8 @@
     owner = "postgres";
   };
 
-  age.secrets.habits-phoenix = {
-    file = ../secrets/habits-phoenix.age;
-  };
-
-  age.secrets.buzz-phoenix = {
-    file = ../secrets/buzz-phoenix.age;
+  age.secrets.habits-axum = {
+    file = ../secrets/habits-axum.age;
   };
 
   boot.loader.grub = {
@@ -130,7 +126,7 @@
     enableACME = true;
 
     locations."/" = {
-      proxyPass = "http://localhost:4000";
+      proxyPass = "http://localhost:3003";
       extraConfig = ''
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
@@ -152,59 +148,14 @@
     '';
   };
 
-  services.habits-phoenix.enable = true;
-
-  systemd.services.habits-phoenix = {
-    preStart = ''
-      ${inputs.habits-phoenix.packages.${pkgs.system}.default}/bin/habits eval "Habits.Release.migrate"
-    '';
-    serviceConfig = {
-      EnvironmentFile = config.age.secrets.habits-phoenix.path;
-    };
-  };
-
-  services.nginx.virtualHosts."api.buzz.rusty-cluster.net" = {
-    forceSSL = true;
-    enableACME = true;
-
-    locations."/" = {
-      proxyPass = "http://localhost:4001";
-      proxyWebsockets = true;
-      extraConfig = ''
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-
-        proxy_read_timeout 7d;
-        proxy_send_timeout 7d;
-        proxy_connect_timeout 7d;
-      '';
-    };
-  };
-
-  services.nginx.virtualHosts."buzz.rusty-cluster.net" = {
-    forceSSL = true;
-    enableACME = true;
-
-    root = inputs.buzz-vue.packages.x86_64-linux.default;
-
-    extraConfig = ''
-      location / {
-        try_files $uri $uri/ /index.html;
-      }
-    '';
-  };
-
-  systemd.services.buzz-phoenix = {
-    description = "buzz-phoenix";
+  systemd.services.habits-axum = {
     wantedBy = ["multi-user.target"];
-
+    after = ["network.target" "postgresql.service"];
     serviceConfig = {
-      EnvironmentFile = config.age.secrets.buzz-phoenix.path;
-      Type = "simple";
-      ExecStart = "${inputs.buzz-phoenix.packages.${pkgs.system}.default}/bin/buzz start";
-      Restart = "on-failure";
-      ProtectHome = "read-only";
+      ExecStart = "${inputs.habits-axum.packages.${pkgs.system}.default}/bin/habits-axum";
+      DynamicUser = true;
+      StateDirectory = "habits-axum";
+      EnvironmentFile = config.age.secrets.habits-axum.path;
     };
   };
 

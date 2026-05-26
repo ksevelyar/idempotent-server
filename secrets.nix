@@ -10,8 +10,7 @@ let
 in {
   "secrets/murmur.age".publicKeys = users ++ systems;
   "secrets/db-habits.age".publicKeys = users ++ systems;
-  "secrets/habits-phoenix.age".publicKeys = users ++ systems;
-  "secrets/buzz-phoenix.age".publicKeys = users ++ systems;
+  "secrets/habits-axum.age".publicKeys = users ++ systems;
   "secrets/wg.age".publicKeys = users ++ systems;
   "secrets/amnezia.age".publicKeys = users ++ systems;
   "secrets/cluster-1-xray.age".publicKeys = users ++ systems;

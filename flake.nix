@@ -11,22 +11,18 @@
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
 
-    habits-phoenix.url = "github:ksevelyar/habits-phoenix";
-    habits-phoenix.inputs.nixpkgs.follows = "nixpkgs";
+    habits-axum.url = "github:ksevelyar/habits-axum";
+    habits-axum.inputs.nixpkgs.follows = "nixpkgs";
     habits-vue.url = "github:ksevelyar/habits-vue";
     habits-vue.inputs.nixpkgs.follows = "nixpkgs";
 
-    buzz-phoenix.url = "github:ksevelyar/buzz-phoenix";
-    buzz-phoenix.inputs.nixpkgs.follows = "nixpkgs";
-    buzz-vue.url = "github:ksevelyar/buzz-vue";
-    buzz-vue.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs = {
     nixpkgs,
     disko,
     agenix,
-    habits-phoenix,
+    habits-axum,
     ...
   } @ inputs: {
     # firstvds
@@ -36,7 +32,6 @@
       modules = [
         disko.nixosModules.disko
         agenix.nixosModules.default
-        habits-phoenix.nixosModules.default
         ./hosts/cluster-0.nix
       ];
       specialArgs.inputs = inputs;
