@@ -25,7 +25,8 @@
   ];
 
   documentation.enable = false;
-  documentation.man.generateCaches = false;
+  documentation.man.cache.enable = false;
+  boot.loader.grub.configurationLimit = 3;
 
   age.secrets.db-habits = {
     file = ../secrets/db-habits.age;
@@ -114,7 +115,10 @@
     };
 
     nameservers = ["8.8.8.8" "8.8.4.4"];
-    defaultGateway = "10.0.0.1";
+    defaultGateway = {
+      address = "10.0.0.1";
+      interface = "ens3";
+    };
   };
 
   system.stateVersion = "24.05";
