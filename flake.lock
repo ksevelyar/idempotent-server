@@ -130,11 +130,11 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1780390082,
-        "narHash": "sha256-3RSE2PYU7nOf0D1Orb8UHZxQFO6JudEIRjZ/4fUIRPM=",
+        "lastModified": 1780395321,
+        "narHash": "sha256-BxfPGb5oPFl8tsE9xUR1Lt+qVrt1BXYPAhyDb9H/SSs=",
         "owner": "ksevelyar",
         "repo": "habits-axum",
-        "rev": "267d295af028c007dd556f933257edcbf8f864f6",
+        "rev": "02b40678b0edd148ade4bdbd0c70daf48c1f6cc2",
         "type": "github"
       },
       "original": {
