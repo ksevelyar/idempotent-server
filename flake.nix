@@ -15,7 +15,6 @@
     habits-axum.inputs.nixpkgs.follows = "nixpkgs";
     habits-vue.url = "github:ksevelyar/habits-vue";
     habits-vue.inputs.nixpkgs.follows = "nixpkgs";
-
   };
 
   outputs = {

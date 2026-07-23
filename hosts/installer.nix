@@ -25,7 +25,7 @@
 
   programs.fish.enable = true;
   environment.systemPackages = with pkgs; [
-    neovim
+    neovim-unwrapped
     gitMinimal
     curlie
     bottom
@@ -63,13 +63,13 @@
   # sudo ip route add default via 10.0.0.1 dev ens3
   networking = {
     useDHCP = false;
-    hostName = "cluster-0";
+    hostName = "installer";
     interfaces = {
       ens3 = {
         useDHCP = false;
         ipv4.addresses = [
           {
-            address = "212.109.193.139";
+            address = "155.212.165.234";
             prefixLength = 32;
           }
         ];
@@ -84,9 +84,12 @@
     };
 
     nameservers = ["8.8.8.8" "8.8.4.4"];
-    defaultGateway = "10.0.0.1";
+    defaultGateway = {
+      address = "10.0.0.1";
+      interface = "ens3";
+    };
   };
 
-  system.stateVersion = "24.05";
+  system.stateVersion = "26.05";
   documentation.nixos.enable = false;
 }
