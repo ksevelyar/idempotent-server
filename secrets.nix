@@ -17,4 +17,5 @@ in {
   "secrets/root-password.age".publicKeys = users ++ systems;
 
   "secrets/wifi.age".publicKeys = [shodan ksevelyar];
+  "secrets/xray.age".publicKeys = [shodan ksevelyar cluster-0];
 }

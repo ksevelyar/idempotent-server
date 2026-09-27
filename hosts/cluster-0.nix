@@ -21,6 +21,7 @@
     ../services/net/murmur.nix
     ../services/net/rustdesk.nix
     ../services/net/jitsi.nix
+    ../services/net/xray.nix
     ../services/databases/postgresql.nix
   ];
 
@@ -64,6 +65,7 @@
     bat
     tealdeer
     tcpdump
+    xray
   ];
 
   users.users.ksevelyar = {
