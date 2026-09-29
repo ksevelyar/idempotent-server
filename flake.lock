@@ -130,16 +130,15 @@
         "rust-overlay": "rust-overlay"
       },
       "locked": {
-        "lastModified": 1790438001,
-        "narHash": "sha256-cgYwl/g29y+lMByBAFQd+wLGtVmPetfwujbSmwONSqU=",
+        "lastModified": 1790690548,
+        "narHash": "sha256-N7Vjqjm3qh4fRxloWpFTfqKrmFd7EFRACNuQWTrcies=",
         "owner": "ksevelyar",
         "repo": "habits-axum",
-        "rev": "27c823f85a5b35eff1a440b90ecfee86c5361e2e",
+        "rev": "d2d90ed6827b1a7a668299f3f315c0addfe3b28f",
         "type": "github"
       },
       "original": {
         "owner": "ksevelyar",
-        "ref": "tg-notifications",
         "repo": "habits-axum",
         "type": "github"
       }
@@ -152,16 +151,15 @@
         ]
       },
       "locked": {
-        "lastModified": 1790439912,
+        "lastModified": 1790441319,
         "narHash": "sha256-ab8e3z1C2ScEZx0AUG3VvY2lNSdzEjwH4qAosJUaCOs=",
         "owner": "ksevelyar",
         "repo": "habits-vue",
-        "rev": "03dc5e789a53f9482556b1f1a66e609053546644",
+        "rev": "b3d2518e80791f509e0be52c50a1fc941353fb68",
         "type": "github"
       },
       "original": {
         "owner": "ksevelyar",
-        "ref": "tg-notifications",
         "repo": "habits-vue",
         "type": "github"
       }

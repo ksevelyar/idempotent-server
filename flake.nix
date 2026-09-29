@@ -11,9 +11,9 @@
     agenix.url = "github:ryantm/agenix";
     agenix.inputs.nixpkgs.follows = "nixpkgs";
 
-    habits-axum.url = "github:ksevelyar/habits-axum/tg-notifications";
+    habits-axum.url = "github:ksevelyar/habits-axum";
     habits-axum.inputs.nixpkgs.follows = "nixpkgs";
-    habits-vue.url = "github:ksevelyar/habits-vue/tg-notifications";
+    habits-vue.url = "github:ksevelyar/habits-vue";
     habits-vue.inputs.nixpkgs.follows = "nixpkgs";
   };
 
