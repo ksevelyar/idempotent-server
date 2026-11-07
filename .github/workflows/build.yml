@@ -15,3 +15,4 @@ jobs:
         name: idempotent-server
         authToken: '${{ secrets.CACHIX_AUTH_TOKEN }}'
     - run: nix flake check
+    - run: nix build .#nixosConfigurations.cluster-0.config.system.build.toplevel
