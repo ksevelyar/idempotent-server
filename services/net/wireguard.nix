@@ -1,6 +1,6 @@
 {config, ...}: {
   networking.firewall.allowedUDPPorts = [444];
-  networking.firewall.trustedInterfaces = [ "skynet" ];
+  networking.firewall.trustedInterfaces = ["skynet"];
 
   networking.firewall.checkReversePath = "loose";
   boot.kernel.sysctl = {
