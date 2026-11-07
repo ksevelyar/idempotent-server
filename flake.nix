@@ -23,7 +23,12 @@
     agenix,
     habits-axum,
     ...
-  } @ inputs: {
+  } @ inputs: let
+    nix_system = "x86_64-linux";
+    pkgs = import nixpkgs {
+      system = nix_system;
+    };
+  in {
     # nixos-rebuild switch --flake .#cluster-0 --target-host root@cluster-0 --no-reexec
     nixosConfigurations.cluster-0 = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
@@ -55,10 +60,24 @@
       ];
     };
 
-    devShells.x86_64-linux.default = (import nixpkgs {system = "x86_64-linux";}).mkShell {
-      buildInputs = with (import nixpkgs {system = "x86_64-linux";}); [
-        inputs.agenix.packages.${pkgs.system}.default
-        inputs.nixos-anywhere.packages.${pkgs.system}.default
+    formatter.${nix_system} = pkgs.alejandra;
+
+    devShells.${nix_system}.default = pkgs.mkShell {
+      packages = [
+        inputs.agenix.packages.${nix_system}.default
+        inputs.nixos-anywhere.packages.${nix_system}.default
+        (pkgs.writeShellApplication {
+          name = "size";
+          runtimeInputs = with pkgs; [coreutils gawk];
+          text = ''
+            system_path="$(readlink -f /run/current-system)"
+            nix path-info -rSh "$system_path" | tail -n 1 | awk '{print $2, $3}'
+          '';
+        })
+        (pkgs.writeShellApplication {
+          name = "format";
+          text = "nix fmt -- --exclude ./.git .";
+        })
       ];
     };
   };
