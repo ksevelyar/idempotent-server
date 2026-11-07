@@ -10,7 +10,6 @@
     ../sys/tty.nix
     ../sys/aliases.nix
     ../sys/nix.nix
-    ../sys/cache.nix
 
     ../services/journald.nix
     ../services/net/sshd.nix
