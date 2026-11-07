@@ -2,7 +2,6 @@
   modulesPath,
   pkgs,
   config,
-  inputs,
   ...
 }: {
   imports = [
@@ -20,10 +19,10 @@
 
   documentation.nixos.enable = false;
   documentation.enable = false;
-  documentation.man.generateCaches = false;
+  documentation.man.cache.enable = false;
 
   age.secrets.cluster-1-xray.file = ../secrets/cluster-1-xray.age;
-  networking.firewall.allowedTCPPorts = [443];
+  networking.firewall.allowedTCPPorts = [42502];
   services.xray = {
     enable = true;
     settingsFile = config.age.secrets.cluster-1-xray.path;
@@ -117,12 +116,11 @@
     useDHCP = false;
     hostName = "cluster-1";
     interfaces = {
-      eth0 = {
+      ens3 = {
         useDHCP = false;
         ipv4.addresses = [
           {
-            # ip a
-            address = "194.154.28.217";
+            address = "77.238.239.218";
             prefixLength = 24;
           }
         ];
@@ -130,7 +128,7 @@
     };
 
     # ip route | grep default
-    defaultGateway = "194.154.28.1";
+    defaultGateway = "77.238.239.1";
     nameservers = ["1.1.1.1" "8.8.8.8"];
   };
 

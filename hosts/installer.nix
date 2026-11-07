@@ -69,15 +69,8 @@
         useDHCP = false;
         ipv4.addresses = [
           {
-            address = "155.212.165.234";
-            prefixLength = 32;
-          }
-        ];
-
-        ipv4.routes = [
-          {
-            address = "10.0.0.1";
-            prefixLength = 32;
+            address = "77.238.239.218";
+            prefixLength = 24;
           }
         ];
       };
@@ -85,7 +78,7 @@
 
     nameservers = ["8.8.8.8" "8.8.4.4"];
     defaultGateway = {
-      address = "10.0.0.1";
+      address = "77.238.239.1";
       interface = "ens3";
     };
   };

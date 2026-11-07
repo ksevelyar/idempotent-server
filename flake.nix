@@ -24,8 +24,7 @@
     habits-axum,
     ...
   } @ inputs: {
-    # firstvds
-    # nixos-rebuild switch --flake .#cluster-0 --target-host root@cluster-0 --fast
+    # nixos-rebuild switch --flake .#cluster-0 --target-host root@cluster-0 --no-reexec
     nixosConfigurations.cluster-0 = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
@@ -36,7 +35,7 @@
       specialArgs.inputs = inputs;
     };
 
-    # nixos-anywhere -- --flake .#cluster-1 --target-host root@194.154.28.217
+    # nixos-anywhere -- --flake .#cluster-1 --target-host root@77.238.239.218 --ssh-port 9922
     nixosConfigurations.cluster-1 = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
@@ -45,15 +44,6 @@
         ./hosts/cluster-1.nix
       ];
       specialArgs.inputs = inputs;
-    };
-
-    # nix build .#nixosConfigurations.shodan.config.system.build.sdImage --impure
-    nixosConfigurations.shodan = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      modules = [
-        agenix.nixosModules.default
-        ./hosts/shodan.nix
-      ];
     };
 
     # nixos-anywhere -- --flake .#installer root@cluster-0
