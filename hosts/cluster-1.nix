@@ -119,7 +119,7 @@
         useDHCP = false;
         ipv4.addresses = [
           {
-            address = "77.238.239.218";
+            address = "195.63.131.138";
             prefixLength = 24;
           }
         ];
@@ -127,7 +127,7 @@
     };
 
     # ip route | grep default
-    defaultGateway = "77.238.239.1";
+    defaultGateway = "195.63.131.1";
     nameservers = ["1.1.1.1" "8.8.8.8"];
   };
 

@@ -40,7 +40,7 @@
       specialArgs.inputs = inputs;
     };
 
-    # nixos-anywhere -- --flake .#cluster-1 --target-host root@77.238.239.218 --ssh-port 9922
+    # nixos-anywhere -- --flake .#cluster-1 --target-host root@195.63.131.138 --ssh-port 9922
     nixosConfigurations.cluster-1 = nixpkgs.lib.nixosSystem {
       system = "x86_64-linux";
       modules = [
