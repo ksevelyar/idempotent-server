@@ -3,7 +3,25 @@
   pkgs,
   config,
   ...
-}: {
+}: let
+  update_duckdns = pkgs.writeShellApplication {
+    name = "update-duckdns";
+    runtimeInputs = [pkgs.curl];
+    text = ''
+      duckdns_token="$(<"${config.age.secrets.duckdns.path}")"
+
+      printf '%s' "$duckdns_token" | curl \
+        --fail \
+        --silent \
+        --show-error \
+        --get \
+        --data-urlencode "domains=ducks-never-forgive" \
+        --data-urlencode "token@-" \
+        --data-urlencode "ip=" \
+        "https://www.duckdns.org/update"
+    '';
+  };
+in {
   imports = [
     (modulesPath + "/installer/scan/not-detected.nix")
     (modulesPath + "/profiles/qemu-guest.nix")
@@ -21,41 +39,22 @@
   documentation.man.cache.enable = false;
 
   age.secrets.cluster-1-xray.file = ../secrets/cluster-1-xray.age;
-  networking.firewall.allowedTCPPorts = [42502];
+  age.secrets.duckdns = {
+    file = ../secrets/duckdns.age;
+    mode = "0400";
+  };
+
+  networking.firewall.allowedTCPPorts = [1443 443];
   services.xray = {
     enable = true;
     settingsFile = config.age.secrets.cluster-1-xray.path;
   };
 
-  # FIXME
-  age.secrets.amnezia.file = ../secrets/amnezia.age;
-  networking.wireguard.enable = false;
-  networking.wireguard.interfaces.amnezia = {
-    type = "amneziawg";
-
-    ips = ["10.0.0.1/24"];
-    listenPort = 1984;
-
-    privateKeyFile = config.age.secrets.amnezia.path;
-
-    extraOptions = {
-      Jc = 5;
-      Jmin = 10;
-      Jmax = 42;
-      S1 = 60;
-      S2 = 90;
-      H4 = 12345;
-    };
-
-    peers = [
-      {
-        publicKey = "CLIENT_PUBLIC_KEY_HERE";
-        allowedIPs = ["10.0.0.2/32"];
-        persistentKeepalive = 25;
-      }
-    ];
+  systemd.services.xray = {
+    after = ["network-online.target"];
+    wants = ["network-online.target"];
+    serviceConfig.ExecStartPre = ["+${update_duckdns}/bin/update-duckdns"];
   };
-  networking.firewall.allowedUDPPorts = [1984];
 
   zramSwap = {
     enable = true;
@@ -119,7 +118,7 @@
         useDHCP = false;
         ipv4.addresses = [
           {
-            address = "195.63.131.138";
+            address = "89.124.88.77";
             prefixLength = 24;
           }
         ];
@@ -127,7 +126,7 @@
     };
 
     # ip route | grep default
-    defaultGateway = "195.63.131.1";
+    defaultGateway = "89.124.88.1";
     nameservers = ["1.1.1.1" "8.8.8.8"];
   };
 

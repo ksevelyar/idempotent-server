@@ -4,15 +4,15 @@ let
 
   # cat /etc/ssh/ssh_host_ed25519_key.pub
   cluster-0 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIAl7A0q+qLbbQ8rdlX2XyHQ0xM9PqOa7i26HoMw8q9BS";
-  cluster-1 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILYcK3cksoxLvw8O7okp+Lp4aSYgq3o3Dsyn6teZWT3F root@cluster-1";
+  cluster-1 = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIOVQm73yhNJ4pwzkgmuQe9hFS5w/Fze1dvLXx2ujeoii root@cluster-1";
   systems = [cluster-0 cluster-1];
 in {
   "secrets/murmur.age".publicKeys = users ++ systems;
   "secrets/db-habits.age".publicKeys = users ++ systems;
   "secrets/habits-axum.age".publicKeys = users ++ systems;
   "secrets/wg.age".publicKeys = users ++ systems;
-  "secrets/amnezia.age".publicKeys = users ++ systems;
   "secrets/cluster-1-xray.age".publicKeys = users ++ systems;
+  "secrets/duckdns.age".publicKeys = [ksevelyar cluster-1];
   "secrets/root-password.age".publicKeys = users ++ systems;
 
   "secrets/wifi.age".publicKeys = [ksevelyar];
